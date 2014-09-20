@@ -98,22 +98,22 @@ def main():
     tmps = item.split(",")
     ageQuatities.append(int(tmps[1].rstrip("\n")))
 
-  # VA constraints
-  """
-  vaNutriousQuatities = fruite_nutrious[0]
-  vaAgeQuatities = array(nutrious_ages)[:, 0]
-  prob += X0 * vaNutriousQuatities[0] * quatities[0] + X1 * vaNutriousQuatities[1] * quatities[1] + X2 * vaNutriousQuatities[2] * quatities[2] + X3 * vaNutriousQuatities[3] * quatities[3] + X4 * vaNutriousQuatities[4] * quatities[4] + X5 * vaNutriousQuatities[5] * quatities[5] + X6 * vaNutriousQuatities[6] * quatities[6] + X7 * vaNutriousQuatities[7] * quatities[7] + X8 * vaNutriousQuatities[8] * quatities[8] + X9 * vaNutriousQuatities[9] * quatities[9] + X10 * vaNutriousQuatities[10] * quatities[10] + X11 * vaNutriousQuatities[11] * quatities[11] + X12 * vaNutriousQuatities[12] * quatities[12] >= ageQuatities[0] * vaAgeQuatities[0] * 365 + ageQuatities[1] * vaAgeQuatities[1] * 365 + ageQuatities[2] * vaAgeQuatities[2] * 365 + ageQuatities[3] * vaAgeQuatities[3] * 365 + ageQuatities[4] * vaAgeQuatities[4] * 365 + ageQuatities[5] * vaAgeQuatities[5] * 365
-  """
-
- 
   for i in range(len(fruite_nutrious)):
+  #for i in [0]:
     vaNutriousQuatities = fruite_nutrious[i]
     vaAgeQuatities = array(nutrious_ages)[:, i]
     prob += X0 * vaNutriousQuatities[0] * quatities[0] + X1 * vaNutriousQuatities[1] * quatities[1] + X2 * vaNutriousQuatities[2] * quatities[2] + X3 * vaNutriousQuatities[3] * quatities[3] + X4 * vaNutriousQuatities[4] * quatities[4] + X5 * vaNutriousQuatities[5] * quatities[5] + X6 * vaNutriousQuatities[6] * quatities[6] + X7 * vaNutriousQuatities[7] * quatities[7] + X8 * vaNutriousQuatities[8] * quatities[8] + X9 * vaNutriousQuatities[9] * quatities[9] + X10 * vaNutriousQuatities[10] * quatities[10] + X11 * vaNutriousQuatities[11] * quatities[11] + X12 * vaNutriousQuatities[12] * quatities[12] >= ageQuatities[0] * vaAgeQuatities[0] * 365 + ageQuatities[1] * vaAgeQuatities[1] * 365 + ageQuatities[2] * vaAgeQuatities[2] * 365 + ageQuatities[3] * vaAgeQuatities[3] * 365 + ageQuatities[4] * vaAgeQuatities[4] * 365 + ageQuatities[5] * vaAgeQuatities[5] * 365
 
-  #prob += X0 + X1 + X2 + X3 + X4 + X5 + X6 + X7 + X8 + X9 + X10 + X11 + X11 + X12 <= len(fruite_quatities)
+  prob += X0 + X1 + X2 + X3 + X4 + X5 + X6 + X7 + X8 + X9 + X10 + X11 + X11 + X12 <= len(fruite_quatities)
 
   GLPK().solve(prob)
+
+  # Solution
+  for v in prob.variables():
+    print v.name, "=", v.varValue
+
+  print "objective=", value(prob.objective)
+
 
 
 if __name__ == "__main__":
