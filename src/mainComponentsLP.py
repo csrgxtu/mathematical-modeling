@@ -26,8 +26,20 @@ def loadFile2List(filePath):
 # main
 # glue
 def main():
+  # load data from file
   fruite_quatity_file = "../data/Fruite-Quatities.txt"
-  print loadFile2List(fruite_quatity_file)
+  nutrious_limit_file = "../data/Nutrious-limit.txt"
+
+  fruite_quatities =  loadFile2List(fruite_quatity_file)
+  nutrious_limits = loadFile2List(nutrious_limit_file)
+  for item in fruite_quatities:
+    tmps = item.split(",")
+    print tmps[0], tmps[1]
+
+  for item in nutrious_limits:
+    tmps = item.split(",")
+    print tmps[0], tmps[1], tmps[2]
+  
 
 
 if __name__ == "__main__":
