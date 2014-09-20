@@ -10,6 +10,7 @@
 #
 # Produced By CSRGXTU
 from pulp import *
+from numpy import *
 
 # loadFile2List
 # load plain text file into list
@@ -23,22 +24,42 @@ def loadFile2List(filePath):
 
   return data
 
+# loadMatrix
+# load matrix from file
+#
+# @param filePath
+# @return 2d list
+def loadMatrix(filePath):
+  data = loadtxt(filePath, delimiter=",", dtype="float", unpack=True)
+  return data
+  
+
 # main
 # glue
 def main():
   # load data from file
-  fruite_quatity_file = "../data/Fruite-Quatities.txt"
-  nutrious_limit_file = "../data/Nutrious-limit.txt"
+  fruite_quatity_file = "../data/Fruite-Quatities-2004.txt"
+  age_quatity_file = "../data/Age-Quatities-2004.txt"
+  fruite_nutrious_file = "../data/Fruite-Nutrious-2004.txt"
+  age_nutrious_file = "../data/Age-Nutrious-2004.txt"
 
-  fruite_quatities =  loadFile2List(fruite_quatity_file)
-  nutrious_limits = loadFile2List(nutrious_limit_file)
+  fruite_quatities = loadFile2List(fruite_quatity_file)
+  age_quatities = loadFile2List(age_quatity_file)
+  fruite_nutrious = loadMatrix(fruite_nutrious_file)
+  #age_nutrious_file = loadMatrix(age_nutrious_file)
+
   for item in fruite_quatities:
     tmps = item.split(",")
     print tmps[0], tmps[1]
 
-  for item in nutrious_limits:
+  for item in age_quatities:
     tmps = item.split(",")
-    print tmps[0], tmps[1], tmps[2]
+    print tmps[0], tmps[1]
+
+  for item in fruite_nutrious:
+    print item
+    #tmps = item.split(",")
+    #print tmps[0], " ", tmps[1], " ", tmps[2]
   
 
 
