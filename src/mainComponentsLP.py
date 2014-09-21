@@ -40,28 +40,13 @@ def main():
   # load data from file
   fruite_quatity_file = "../data/Fruite-Quatities-2004.txt"
   age_quatity_file = "../data/Age-Quatities-2004.txt"
-  fruite_nutrious_file = "../data/Fruite-Nutrious-2004.txt"
-  nutrious_age_file = "../data/Nutrious-Age-2004.txt"
+  fruite_nutrious_file = "../data/Fruite-Nutrious-2004-ug.txt"
+  nutrious_age_file = "../data/Nutrious-Age-2004-ug.txt"
 
   fruite_quatities = loadFile2List(fruite_quatity_file)
   age_quatities = loadFile2List(age_quatity_file)
   fruite_nutrious = loadMatrix(fruite_nutrious_file)
   nutrious_ages = loadMatrix(nutrious_age_file)
-
-  """
-  for item in fruite_quatities:
-    tmps = item.split(",")
-    print tmps[0], tmps[1]
-
-  for item in age_quatities:
-    tmps = item.split(",")
-    print tmps[0], tmps[1]
-
-  for item in fruite_nutrious:
-    print item
-    #tmps = item.split(",")
-    #print tmps[0], " ", tmps[1], " ", tmps[2]
-  """
 
   prob = LpProblem("fruites", LpMinimize)
 
@@ -84,11 +69,11 @@ def main():
   prob += X0 + X1 + X2 + X3 + X4 + X5 + X6 + X7 + X8 + X9 + X10 + X11 + X11 + X12
 
   # Constraints
-  # get fruite quatities
+  # get fruite quatities, unit, g
   quatities = []
   for item in fruite_quatities:
     tmps = item.split(",")
-    quatities.append(int((tmps[1]).rstrip("\n")))
+    quatities.append(int((tmps[1]).rstrip("\n")) * 10000)
 
   prob += X0 * quatities[0] + X1 * quatities[1] + X2 * quatities[2] + X3 * quatities[3] + X4 * quatities[4] + X5 * quatities[5] + X6 * quatities[6] + X7 * quatities[7] + X8 * quatities[8] + X9 * quatities[9] + X10 * quatities[10] + X11 * quatities[11] + X12 * quatities[12] >= (quatities[0] + quatities[1] + quatities[2] + quatities[3] + quatities[4] + quatities[5] + quatities[6] + quatities[7] + quatities[8] + quatities[9] + quatities[10] + quatities[11] + quatities[12]) * 0.9
 
@@ -103,6 +88,7 @@ def main():
     vaNutriousQuatities = fruite_nutrious[i]
     vaAgeQuatities = array(nutrious_ages)[:, i]
     prob += X0 * vaNutriousQuatities[0] * quatities[0] + X1 * vaNutriousQuatities[1] * quatities[1] + X2 * vaNutriousQuatities[2] * quatities[2] + X3 * vaNutriousQuatities[3] * quatities[3] + X4 * vaNutriousQuatities[4] * quatities[4] + X5 * vaNutriousQuatities[5] * quatities[5] + X6 * vaNutriousQuatities[6] * quatities[6] + X7 * vaNutriousQuatities[7] * quatities[7] + X8 * vaNutriousQuatities[8] * quatities[8] + X9 * vaNutriousQuatities[9] * quatities[9] + X10 * vaNutriousQuatities[10] * quatities[10] + X11 * vaNutriousQuatities[11] * quatities[11] + X12 * vaNutriousQuatities[12] * quatities[12] >= ageQuatities[0] * vaAgeQuatities[0] * 365 + ageQuatities[1] * vaAgeQuatities[1] * 365 + ageQuatities[2] * vaAgeQuatities[2] * 365 + ageQuatities[3] * vaAgeQuatities[3] * 365 + ageQuatities[4] * vaAgeQuatities[4] * 365 + ageQuatities[5] * vaAgeQuatities[5] * 365
+    #break
 
   prob += X0 + X1 + X2 + X3 + X4 + X5 + X6 + X7 + X8 + X9 + X10 + X11 + X11 + X12 <= len(fruite_quatities)
 
