@@ -1,13 +1,13 @@
 GLPSOL: GLPK LP/MIP Solver, v4.45
 Parameter(s) specified in the command line:
- --cpxlp /tmp/4964-pulp.lp -o /tmp/4964-pulp.sol
-Reading problem data from `/tmp/4964-pulp.lp'...
-21 rows, 13 columns, 270 non-zeros
-13 integer variables, all of which are binary
-100 lines were read
+ --cpxlp /tmp/7343-pulp.lp -o /tmp/7343-pulp.sol
+Reading problem data from `/tmp/7343-pulp.lp'...
+21 rows, 14 columns, 291 non-zeros
+14 integer variables, all of which are binary
+102 lines were read
 GLPK Integer Optimizer, v4.45
-21 rows, 13 columns, 270 non-zeros
-13 integer variables, all of which are binary
+21 rows, 14 columns, 291 non-zeros
+14 integer variables, all of which are binary
 Preprocessing...
 1 hidden covering inequaliti(es) were detected
 2 rows, 11 columns, 22 non-zeros
@@ -22,29 +22,30 @@ Size of triangular part = 2
 Solving LP relaxation...
 GLPK Simplex Optimizer, v4.45
 2 rows, 11 columns, 22 non-zeros
-      0: obj =   2.000000000e+00  infeas =  1.573e+01 (0)
-*     7: obj =   8.321006225e+00  infeas =  0.000e+00 (0)
-*    12: obj =   5.583519602e+00  infeas =  0.000e+00 (0)
+      0: obj =   3.000000000e+00  infeas =  1.486e+01 (0)
+*     7: obj =   9.074010634e+00  infeas =  0.000e+00 (0)
+*    12: obj =   6.319951157e+00  infeas =  0.000e+00 (0)
 OPTIMAL SOLUTION FOUND
 Integer optimization begins...
 +    12: mip =     not found yet >=              -inf        (1; 0)
-+    17: >>>>>   1.200000000e+01 >=   7.000000000e+00  41.7% (4; 0)
-+    25: >>>>>   9.000000000e+00 >=   7.000000000e+00  22.2% (5; 1)
-+    41: >>>>>   8.000000000e+00 >=   7.000000000e+00  12.5% (6; 6)
-+    43: mip =   8.000000000e+00 >=     tree is empty   0.0% (0; 21)
++    24: >>>>>   1.200000000e+01 >=   7.000000000e+00  41.7% (7; 0)
++    31: >>>>>   9.000000000e+00 >=   7.000000000e+00  22.2% (8; 1)
++    35: >>>>>   8.000000000e+00 >=   8.000000000e+00   0.0% (3; 9)
++    35: mip =   8.000000000e+00 >=     tree is empty   0.0% (0; 17)
 INTEGER OPTIMAL SOLUTION FOUND
 Time used:   0.0 secs
 Memory used: 0.1 Mb (69090 bytes)
-Writing MIP solution to `/tmp/4964-pulp.sol'...
+Writing MIP solution to `/tmp/7343-pulp.sol'...
 X0 = 1
 X1 = 1
 X10 = 1
 X11 = 0
 X12 = 1
+X13 = 1
 X2 = 1
 X3 = 0
 X4 = 1
-X5 = 1
+X5 = 0
 X6 = 1
 X7 = 0
 X8 = 0
