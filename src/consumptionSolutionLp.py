@@ -39,8 +39,8 @@ def loadMatrix(filePath):
 def main():
   # load data from file
   fruites_prices_file = "../data/Fruite-Vegetable-Price.txt"
-  fruites_nutrious_file = "../data/Fruite-Vegetable-Nutrious-ug.txt"
-  nutrious_boundry_file = "../data/Nutrious-Boudry-mg.txt"
+  fruites_nutrious_file = "../data/Fruite-Vegetable-Nutrious-ug-10.txt"
+  nutrious_boundry_file = "../data/Nutrious-Boundry-mg-10.txt"
 
   fruites_prices = loadFile2List(fruites_prices_file)
   fruites_nutrious = loadMatrix(fruites_nutrious_file)
@@ -86,7 +86,7 @@ def main():
     print nutrious
     print boundries
     # XI is KG unit
-    prob += X0 * 10 * nutrious[0] + X1 * 10 * nutrious[1] + X2 * 10 * nutrious[2] + X3 * 10 * nutrious[3] + X4 * 10 * nutrious[4] + X5 * 10 * nutrious[5] + X6 * 10 * nutrious[6] + X7 * 10 * nutrious[7] + X8 * 10 * nutrious[8] + X9 * 10 * nutrious[9] + X10 * 10 * nutrious[10] + X11 * 10 * nutrious[11] + X12 * 10 * nutrious[12] + X13 * 10 * nutrious[13] + X14 * 10 * nutrious[14] + X15 * 10 * nutrious[15] <= boundries[0] * 365
+    #prob += X0 * 10 * nutrious[0] + X1 * 10 * nutrious[1] + X2 * 10 * nutrious[2] + X3 * 10 * nutrious[3] + X4 * 10 * nutrious[4] + X5 * 10 * nutrious[5] + X6 * 10 * nutrious[6] + X7 * 10 * nutrious[7] + X8 * 10 * nutrious[8] + X9 * 10 * nutrious[9] + X10 * 10 * nutrious[10] + X11 * 10 * nutrious[11] + X12 * 10 * nutrious[12] + X13 * 10 * nutrious[13] + X14 * 10 * nutrious[14] + X15 * 10 * nutrious[15] <= boundries[0] * 365
     prob += X0 * 10 * nutrious[0] + X1 * 10 * nutrious[1] + X2 * 10 * nutrious[2] + X3 * 10 * nutrious[3] + X4 * 10 * nutrious[4] + X5 * 10 * nutrious[5] + X6 * 10 * nutrious[6] + X7 * 10 * nutrious[7] + X8 * 10 * nutrious[8] + X9 * 10 * nutrious[9] + X10 * 10 * nutrious[10] + X11 * 10 * nutrious[11] + X12 * 10 * nutrious[12] + X13 * 10 * nutrious[13] + X14 * 10 * nutrious[14] + X15 * 10 * nutrious[15] >= boundries[1] * 365
 
   prob += X0 >= 0
