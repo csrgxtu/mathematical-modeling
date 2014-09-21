@@ -77,18 +77,18 @@ def main():
   for item in fruites_prices:
     prices.append(float(item.split(",")[1].rstrip("\n")))
   
-  prob += X0 * prices[0] + X1 * prices[1] + X2 * prices[2] + X3 * prices[3] + X4 * prices[4] + X5 * prices[5] + X6 * prices[6] + X7 * prices[7] + X8 * prices[8] + X9 * prices[9] + X10 * prices[10] + X11 * prices[11] + X11 * prices[11] + X12 * prices[12] + X13 * prices[13] + X14 * prices[14] + X15 * prices[15]
+  prob += X0 * prices[0] + X1 * prices[1] + X2 * prices[2] + X3 * prices[3] + X4 * prices[4] + X5 * prices[5] + X6 * prices[6] + X7 * prices[7] + X8 * prices[8] + X9 * prices[9] + X10 * prices[10] + X11 * prices[11] + X12 * prices[12] + X13 * prices[13] + X14 * prices[14] + X15 * prices[15]
 
   # Constraints
   for i in range(len(nutrious_boundries)):
     boundries = nutrious_boundries[i]
     nutrious = [item / 1000 for item in fruites_nutrious[i]]
     print nutrious
+    print boundries
     # XI is KG unit
-    prob += X0 * 10 * nutrious[0] + X1 * 10 * nutrious[1] + X2 * 10 * nutrious[2] + X3 * 10 * nutrious[3] + X4 * 10 * nutrious[4] + X5 * 10 * nutrious[5] + X6 * 10 * nutrious[6] + X7 * 10 * nutrious[7] + X8 * 10 * nutrious[8] + X9 * 10 * nutrious[9] + X10 * 10 * nutrious[10] + X11 * 10 * nutrious[11] + X12 * 10 * nutrious[12] + X13 * 10 * nutrious[13] + X14 * 10 * nutrious[14] + X15 * 10 * nutrious[15] <= boundries[0]
-    prob += X0 * 10 * nutrious[0] + X1 * 10 * nutrious[1] + X2 * 10 * nutrious[2] + X3 * 10 * nutrious[3] + X4 * 10 * nutrious[4] + X5 * 10 * nutrious[5] + X6 * 10 * nutrious[6] + X7 * 10 * nutrious[7] + X8 * 10 * nutrious[8] + X9 * 10 * nutrious[9] + X10 * 10 * nutrious[10] + X11 * 10 * nutrious[11] + X12 * 10 * nutrious[12] + X13 * 10 * nutrious[13] + X14 * 10 * nutrious[14] + X15 * 10 * nutrious[15] >= boundries[1]
+    prob += X0 * 10 * nutrious[0] + X1 * 10 * nutrious[1] + X2 * 10 * nutrious[2] + X3 * 10 * nutrious[3] + X4 * 10 * nutrious[4] + X5 * 10 * nutrious[5] + X6 * 10 * nutrious[6] + X7 * 10 * nutrious[7] + X8 * 10 * nutrious[8] + X9 * 10 * nutrious[9] + X10 * 10 * nutrious[10] + X11 * 10 * nutrious[11] + X12 * 10 * nutrious[12] + X13 * 10 * nutrious[13] + X14 * 10 * nutrious[14] + X15 * 10 * nutrious[15] <= boundries[0] * 365
+    prob += X0 * 10 * nutrious[0] + X1 * 10 * nutrious[1] + X2 * 10 * nutrious[2] + X3 * 10 * nutrious[3] + X4 * 10 * nutrious[4] + X5 * 10 * nutrious[5] + X6 * 10 * nutrious[6] + X7 * 10 * nutrious[7] + X8 * 10 * nutrious[8] + X9 * 10 * nutrious[9] + X10 * 10 * nutrious[10] + X11 * 10 * nutrious[11] + X12 * 10 * nutrious[12] + X13 * 10 * nutrious[13] + X14 * 10 * nutrious[14] + X15 * 10 * nutrious[15] >= boundries[1] * 365
 
-  """
   prob += X0 >= 0
   prob += X1 >= 0
   prob += X2 >= 0
@@ -105,7 +105,6 @@ def main():
   prob += X13 >= 0
   prob += X14 >= 0
   prob += X15 >= 0
-  """
 
   GLPK().solve(prob)
 
