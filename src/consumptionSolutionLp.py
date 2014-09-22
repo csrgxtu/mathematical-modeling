@@ -83,8 +83,6 @@ def main():
   for i in range(len(nutrious_boundries)):
     boundries = nutrious_boundries[i]
     nutrious = [item / 1000 for item in fruites_nutrious[i]]
-    print nutrious
-    print boundries
     # XI is KG unit
     #prob += X0 * 10 * nutrious[0] + X1 * 10 * nutrious[1] + X2 * 10 * nutrious[2] + X3 * 10 * nutrious[3] + X4 * 10 * nutrious[4] + X5 * 10 * nutrious[5] + X6 * 10 * nutrious[6] + X7 * 10 * nutrious[7] + X8 * 10 * nutrious[8] + X9 * 10 * nutrious[9] + X10 * 10 * nutrious[10] + X11 * 10 * nutrious[11] + X12 * 10 * nutrious[12] + X13 * 10 * nutrious[13] + X14 * 10 * nutrious[14] + X15 * 10 * nutrious[15] <= boundries[0] * 365
     prob += X0 * 10 * nutrious[0] + X1 * 10 * nutrious[1] + X2 * 10 * nutrious[2] + X3 * 10 * nutrious[3] + X4 * 10 * nutrious[4] + X5 * 10 * nutrious[5] + X6 * 10 * nutrious[6] + X7 * 10 * nutrious[7] + X8 * 10 * nutrious[8] + X9 * 10 * nutrious[9] + X10 * 10 * nutrious[10] + X11 * 10 * nutrious[11] + X12 * 10 * nutrious[12] + X13 * 10 * nutrious[13] + X14 * 10 * nutrious[14] + X15 * 10 * nutrious[15] >= boundries[1] * 365
@@ -105,6 +103,11 @@ def main():
   prob += X13 >= 0
   prob += X14 >= 0
   prob += X15 >= 0
+
+  prob += X15 <= 281
+  prob += X9 <= 100
+  prob += X8 <= 90
+  prob += X13 <= 100
 
   GLPK().solve(prob)
 
