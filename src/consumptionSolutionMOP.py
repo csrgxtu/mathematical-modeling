@@ -3,10 +3,11 @@
 #
 # Author: Archer Reilly
 # Date: 22/Sep/2014
-# File: consumptionSolution.py
-# Des: this file is used to find the best solutions
-# for the Minimize problem of the consumption of fruites
-# and vegetables.
+# File: consumptionSolutionMOP.py
+# Des: this file is used to find the solutions of the
+# multi-objective programming problem in problem 4, actually
+# we transformed the MOP into traditional LP problem, and
+# thus use PuLP packge solve it.
 #
 # Produced By CSRGXTU
 from pulp import *
@@ -39,17 +40,15 @@ def loadMatrix(filePath):
 def main():
   # load data from file
   fruites_prices_file = "../data/Fruite-Vegetable-Price.txt"
+  fruites_wholesale_prices_file = "../data/Fruite-Vegetable-Wholesale-Price.txt"
   fruites_nutrious_file = "../data/Fruite-Vegetable-Nutrious-ug-10.txt"
   nutrious_boundry_file = "../data/Nutrious-Boundry-mg-10.txt"
 
   fruites_prices = loadFile2List(fruites_prices_file)
+  fruites_wholesale_prices = loadFile2List(fruites_wholesale_prices_file)
   fruites_nutrious = loadMatrix(fruites_nutrious_file)
   nutrious_boundries = loadMatrix(nutrious_boundry_file)
 
-  """
-  for item in nutrious_boundries:
-    print item
-  """
 
   prob = LpProblem("fruites-vegetables", LpMinimize)
 
@@ -73,8 +72,11 @@ def main():
   prices = []
   for item in fruites_prices:
     prices.append(float(item.split(",")[1].rstrip("\n")))
+  wholesale_prices = []
+  for item in fruites_wholesale_prices:
+    wholesale_prices.append(float(item.split(",")[1].rstrip("\n")))
   
-  prob += X0 * prices[0] + X1 * prices[1] + X2 * prices[2] + X3 * prices[3] + X4 * prices[4] + X5 * prices[5] + X6 * prices[6] + X7 * prices[7] + X8 * prices[8] + X9 * prices[9] + X10 * prices[10] + X11 * prices[11] + X12 * prices[12]
+  prob += (X0 * prices[0] + X1 * prices[1] + X2 * prices[2] + X3 * prices[3] + X4 * prices[4] + X5 * prices[5] + X6 * prices[6] + X7 * prices[7] + X8 * prices[8] + X9 * prices[9] + X10 * prices[10] + X11 * prices[11] + X12 * prices[12]) - (X0 * wholesale_prices[0] + X1 * wholesale_prices[1] + X2 * wholesale_prices[2] + X3 * wholesale_prices[3] + X4 * wholesale_prices[4] + X5 * wholesale_prices[5] + X6 * wholesale_prices[6] + X7 * wholesale_prices[7] + X8 * wholesale_prices[8] + X9 * wholesale_prices[9] + X10 * wholesale_prices[10] + X11 * wholesale_prices[11] + X12 * wholesale_prices[12]) 
 
   # Constraints
   for i in range(len(nutrious_boundries)):
@@ -98,16 +100,15 @@ def main():
   prob += X11 >= 0
   prob += X12 >= 0
 
-  prob += X1 <= 154.88
-  prob += X5 <= 167.45
-  prob += X7 <= 77.45
-  prob += X8 <= 89.99
-  prob += X9 <= 100
-  prob += X10 <= 80.23
-  prob += X12 <= 281
+  prob += X7 <= 78.24
+  prob += X8 <= 108.19
+  prob += X9 <= 187
+  prob += X10 <= 153.26
+  prob += X11 <= 63.78
+  prob += X12 <= 237
 
   GLPK().solve(prob)
-
+  
   # Solution
   for v in prob.variables():
     print v.name, "=", v.varValue

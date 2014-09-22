@@ -69,9 +69,6 @@ def main():
   X10 = LpVariable("X10")
   X11 = LpVariable("X11")
   X12 = LpVariable("X12")
-  X13 = LpVariable("X13")
-  X14 = LpVariable("X14")
-  X15 = LpVariable("X15")
 
   # Objective
   # get prices
@@ -82,7 +79,7 @@ def main():
   for item in fruites_wholesale_prices:
     wholesale_prices.append(float(item.split(",")[1].rstrip("\n")))
   
-  prob += (X0 * prices[0] + X1 * prices[1] + X2 * prices[2] + X3 * prices[3] + X4 * prices[4] + X5 * prices[5] + X6 * prices[6] + X7 * prices[7] + X8 * prices[8] + X9 * prices[9] + X10 * prices[10] + X11 * prices[11] + X12 * prices[12] + X13 * prices[13] + X14 * prices[14] + X15 * prices[15]) - (X0 * wholesale_prices[0] + X1 * wholesale_prices[1] + X2 * wholesale_prices[2] + X3 * wholesale_prices[3] + X4 * wholesale_prices[4] + X5 * wholesale_prices[5] + X6 * wholesale_prices[6] + X7 * wholesale_prices[7] + X8 * wholesale_prices[8] + X9 * wholesale_prices[9] + X10 * wholesale_prices[10] + X11 * wholesale_prices[11] + X12 * wholesale_prices[12] + X13 * wholesale_prices[13] + X14 * wholesale_prices[14] + X15 * wholesale_prices[15]) 
+  prob += (X0 * prices[0] + X1 * prices[1] + X2 * prices[2] + X3 * prices[3] + X4 * prices[4] + X5 * prices[5] + X6 * prices[6] + X7 * prices[7] + X8 * prices[8] + X9 * prices[9] + X10 * prices[10] + X11 * prices[11] + X12 * prices[12]) - (X0 * wholesale_prices[0] + X1 * wholesale_prices[1] + X2 * wholesale_prices[2] + X3 * wholesale_prices[3] + X4 * wholesale_prices[4] + X5 * wholesale_prices[5] + X6 * wholesale_prices[6] + X7 * wholesale_prices[7] + X8 * wholesale_prices[8] + X9 * wholesale_prices[9] + X10 * wholesale_prices[10] + X11 * wholesale_prices[11] + X12 * wholesale_prices[12]) 
 
   # Constraints
   for i in range(len(nutrious_boundries)):
@@ -90,7 +87,7 @@ def main():
     nutrious = [item / 1000 for item in fruites_nutrious[i]]
     # XI is KG unit
     #prob += X0 * 10 * nutrious[0] + X1 * 10 * nutrious[1] + X2 * 10 * nutrious[2] + X3 * 10 * nutrious[3] + X4 * 10 * nutrious[4] + X5 * 10 * nutrious[5] + X6 * 10 * nutrious[6] + X7 * 10 * nutrious[7] + X8 * 10 * nutrious[8] + X9 * 10 * nutrious[9] + X10 * 10 * nutrious[10] + X11 * 10 * nutrious[11] + X12 * 10 * nutrious[12] + X13 * 10 * nutrious[13] + X14 * 10 * nutrious[14] + X15 * 10 * nutrious[15] <= boundries[0] * 365
-    prob += X0 * 10 * nutrious[0] + X1 * 10 * nutrious[1] + X2 * 10 * nutrious[2] + X3 * 10 * nutrious[3] + X4 * 10 * nutrious[4] + X5 * 10 * nutrious[5] + X6 * 10 * nutrious[6] + X7 * 10 * nutrious[7] + X8 * 10 * nutrious[8] + X9 * 10 * nutrious[9] + X10 * 10 * nutrious[10] + X11 * 10 * nutrious[11] + X12 * 10 * nutrious[12] + X13 * 10 * nutrious[13] + X14 * 10 * nutrious[14] + X15 * 10 * nutrious[15] >= boundries[1] * 365
+    prob += X0 * 10 * nutrious[0] + X1 * 10 * nutrious[1] + X2 * 10 * nutrious[2] + X3 * 10 * nutrious[3] + X4 * 10 * nutrious[4] + X5 * 10 * nutrious[5] + X6 * 10 * nutrious[6] + X7 * 10 * nutrious[7] + X8 * 10 * nutrious[8] + X9 * 10 * nutrious[9] + X10 * 10 * nutrious[10] + X11 * 10 * nutrious[11] + X12 * 10 * nutrious[12] >= boundries[1] * 365
 
   prob += X0 >= 0
   prob += X1 >= 0
@@ -105,18 +102,16 @@ def main():
   prob += X10 >= 0
   prob += X11 >= 0
   prob += X12 >= 0
-  prob += X13 >= 0
-  prob += X14 >= 0
-  prob += X15 >= 0
 
-  prob += X4 <= 156
+  prob += X7 <= 78.24
+  prob += X8 <= 108.19
   prob += X9 <= 187
-  prob += X13 <= 92.23
-  prob += X14 <= 184.44
-  prob += X15 <= 213.86
+  prob += X10 <= 153.26
+  prob += X11 <= 63.78
+  prob += X12 <= 237
 
   GLPK().solve(prob)
-
+  
   # Solution
   for v in prob.variables():
     print v.name, "=", v.varValue
