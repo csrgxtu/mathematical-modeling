@@ -1,11 +1,11 @@
 GLPSOL: GLPK LP/MIP Solver, v4.45
 Parameter(s) specified in the command line:
- --cpxlp /tmp/4459-pulp.lp -o /tmp/4459-pulp.sol
-Reading problem data from `/tmp/4459-pulp.lp'...
-26 rows, 16 columns, 174 non-zeros
-68 lines were read
+ --cpxlp /tmp/8860-pulp.lp -o /tmp/8860-pulp.sol
+Reading problem data from `/tmp/8860-pulp.lp'...
+31 rows, 16 columns, 179 non-zeros
+73 lines were read
 GLPK Simplex Optimizer, v4.45
-26 rows, 16 columns, 174 non-zeros
+31 rows, 16 columns, 179 non-zeros
 Preprocessing...
 10 rows, 16 columns, 158 non-zeros
 Scaling...
@@ -16,25 +16,25 @@ Constructing initial basis...
 Size of triangular part = 10
       0: obj =   0.000000000e+00  infeas =  1.538e+03 (0)
 *    10: obj =   4.665283461e+03  infeas =  0.000e+00 (0)
-*    13: obj =   6.695114119e+02  infeas =  0.000e+00 (0)
+*    19: obj =   1.185045827e+03  infeas =  0.000e+00 (0)
 OPTIMAL SOLUTION FOUND
 Time used:   0.0 secs
 Memory used: 0.1 Mb (64599 bytes)
-Writing basic solution to `/tmp/4459-pulp.sol'...
+Writing basic solution to `/tmp/8860-pulp.sol'...
 X0 = 0.0
 X1 = 0.0
-X10 = 0.0
+X10 = 261.563
 X11 = 0.0
 X12 = 0.0
-X13 = 0.0
-X14 = 0.0
-X15 = 0.0
+X13 = 92.23
+X14 = 184.44
+X15 = 213.86
 X2 = 0.0
 X3 = 0.0
-X4 = 461.897
+X4 = 156.0
 X5 = 0.0
-X6 = 0.0
+X6 = 114.792
 X7 = 0.0
-X8 = 0.0
-X9 = 1795.38
-objective= 669.5114
+X8 = 86.2823
+X9 = 187.0
+objective= 1185.04613

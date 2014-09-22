@@ -109,6 +109,12 @@ def main():
   prob += X14 >= 0
   prob += X15 >= 0
 
+  prob += X4 <= 156
+  prob += X9 <= 187
+  prob += X13 <= 92.23
+  prob += X14 <= 184.44
+  prob += X15 <= 213.86
+
   GLPK().solve(prob)
 
   # Solution
