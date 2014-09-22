@@ -1,0 +1,7 @@
+求解主要水果的Python程序：src/mainFruitesComponentsLP.py
+求解主要蔬菜Python程序：src/mainVegetablesComponentsLP.py
+线性回归预测消费量的Matlab程序：src/consumptionPredictionLR.m
+Logistic回归预测消费量的Matlab程序：src/consumptionPredictionLogistic.m
+灰度法预测消费量的Matlab程序：src/consumptionGrepPrediction.m
+主要水果蔬菜年度人均消费量Python程序：src/consumptionSolutionLp.py
+主要水果蔬菜年度人均消费量多目标规划Python程序：src/consumptionSolutionMOP.py
